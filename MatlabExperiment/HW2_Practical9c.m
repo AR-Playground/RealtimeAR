@@ -30,7 +30,7 @@ function r=HW2_Practical9c( templateMetaFileName, numFrames, imgHeight, imgWidth
 load( templateMetaFileName );
 %contains minX minY patchOffset pixelsTemplate pos
 
-numParticles = 50;
+numParticles = 100;
 weight_of_samples = ones(numParticles,1);
 
 % TO DO: normalize the weights (may be trivial this time)

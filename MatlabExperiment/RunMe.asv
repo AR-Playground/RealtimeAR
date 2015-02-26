@@ -6,10 +6,12 @@ function RunMe
 % This is really wasteful of memory, but makes subsequent rendering faster.
 LoadVideoFrames
 
-LLs = HW2_Practical9c( 'll',numFrames );
-LRs = HW2_Practical9c( 'lr' );
-ULs = HW2_Practical9c( 'ul' );
-URs = HW2_Practical9c( 'ur' );
+%2015.2.26
+%Mincong: Currently there are two error predictions in LLs and ULs
+LLs = HW2_Practical9c( 'll', numFrames, imgHeight, imgWidth, Imgs );
+LRs = HW2_Practical9c( 'lr', numFrames, imgHeight, imgWidth, Imgs );
+ULs = HW2_Practical9c( 'ul', numFrames, imgHeight, imgWidth, Imgs );
+URs = HW2_Practical9c( 'ur', numFrames, imgHeight, imgWidth, Imgs );
 
 close all;
 
