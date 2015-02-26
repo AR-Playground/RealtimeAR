@@ -1,13 +1,6 @@
-function r=HW2_Practical9c( templateMetaFileName, numFrames, imgHeight, imgWidth, Imgs )
+function r = CondensationFilter( templateMetaFileName, numFrames, imgHeight, imgWidth, Imgs,...
+                                 numParticles, minX, minY, patchOffset, pixelsTemplate, pos )
 
-%2015.2.26
-%Mincong: load from outside to prevent duplicated loading
-%LoadVideoFrames
-
-load( templateMetaFileName );
-%contains minX minY patchOffset pixelsTemplate pos
-
-numParticles = 100;
 weight_of_samples = ones(numParticles,1);
 
 % TO DO: normalize the weights (may be trivial this time)
@@ -209,3 +202,6 @@ for( iTime = 1:numFrames )
     clear particles_new;
 
 end % End of for loop over each frame in the sequence
+
+end
+

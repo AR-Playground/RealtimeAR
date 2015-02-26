@@ -7,7 +7,11 @@ function RunMe
 LoadVideoFrames
 
 %2015.2.26
-%Mincong: Currently there are two error predictions in LLs and ULs
+%Mincong: 
+%Currently there are two error predictions (lags) in LLs and ULs.
+%The reason is when the camera has a quick movement, the predictions require
+%a few frames to recover to right positions (corners).
+%In other words, the time for propagation causes the lags.
 LLs = HW2_Practical9c( 'll', numFrames, imgHeight, imgWidth, Imgs );
 LRs = HW2_Practical9c( 'lr', numFrames, imgHeight, imgWidth, Imgs );
 ULs = HW2_Practical9c( 'ul', numFrames, imgHeight, imgWidth, Imgs );

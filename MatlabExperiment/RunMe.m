@@ -5,6 +5,10 @@ function RunMe
 % Load frames from the whole video into Imgs{}.
 % This is really wasteful of memory, but makes subsequent rendering faster.
 LoadVideoFrames
+load('ll');
+load('lr');
+load('ul');
+load('lr');
 
 %2015.2.26
 %Mincong: 
@@ -17,9 +21,7 @@ LRs = HW2_Practical9c( 'lr', numFrames, imgHeight, imgWidth, Imgs );
 ULs = HW2_Practical9c( 'ul', numFrames, imgHeight, imgWidth, Imgs );
 URs = HW2_Practical9c( 'ur', numFrames, imgHeight, imgWidth, Imgs );
 
-close all;
-
-
+%same loop for 4 times above, 1 time below!
 
 % Coordinates of the known target object (a dark square on a plane) in 3D:
 XCart = [-50 -50  50  50;...
