@@ -16,6 +16,7 @@ load('lr');
 %The reason is when the camera has a quick movement, the predictions require
 %a few frames to recover to right positions (corners).
 %In other words, the time for propagation causes the lags
+% Idea: Use lightfield?
 LLs = HW2_Practical9c( 'll', numFrames, imgHeight, imgWidth, Imgs );
 LRs = HW2_Practical9c( 'lr', numFrames, imgHeight, imgWidth, Imgs );
 ULs = HW2_Practical9c( 'ul', numFrames, imgHeight, imgWidth, Imgs );

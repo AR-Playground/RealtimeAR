@@ -1,6 +1,0 @@
-function [ output_args ] = CondensationFilter( input_args )
-
-
-
-end
-
