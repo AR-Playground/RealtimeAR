@@ -1,8 +1,8 @@
 function [weight_of_samples,samples_to_propagate,numDims_w,particles_old,r] ... 
          = CondensationFilter ...
-         ( templateMetaFileName, numFrames, imgHeight, imgWidth, Imgs,...
+         (  imgHeight, imgWidth, Imgs,...
            numParticles, minX, minY, patchOffset, pixelsTemplate, pos,...
-           weight_of_samples,samples_to_propagate,numDims_w,particles_old,hImg,hSamps,iTime,...
+           weight_of_samples,samples_to_propagate,numDims_w,particles_old,hImg,iTime,...
            r)
 
   
@@ -40,31 +40,6 @@ function [weight_of_samples,samples_to_propagate,numDims_w,particles_old,r] ...
     end;
     % Note: it is fine even if some of the old particles get picked repeatedly, while
     % others don't get picked at all.
-
-
-    % =================================================
-    % Visualize
-    % =================================================
-    set(0,'CurrentFigure',hSamps)
-    set(gcf,'Position',[600 125 640 480]);
-    set(gcf,'Color',[1 1 1]);
-    set(gca,'Box','Off');
-    title('Cumulative histogram of probabilities for sorted list of particles');
-    plot(zeros(numParticles,1), some_threshes,'b.','MarkerSize',15);
-    hold on;
-    plot([1:numParticles], cum_hist_of_weights, 'ro-', 'MarkerSize',3);
-    which_sample_ids = unique(samples_to_propagate);
-    how_many_of_each = histc(samples_to_propagate, unique(samples_to_propagate));
-    for( k=1:size(which_sample_ids,1) )
-        plot( which_sample_ids(k), 0, 'bo-', 'MarkerSize', 3 * how_many_of_each(k) )
-    end;
-    xlabel(sprintf( 'Indeces of all available samples, with larger blue circles for frequently re-sampled particles\n(Iteration %d)', iTime));
-    ylabel('Cumulative probability');
-    hold off
-    xlim([0 numParticles]);ylim([0 1]);
-    drawnow
-    % =================================================
-    % =================================================
 
 
     % Predict where the particles we plucked from the old distribution of 
@@ -144,17 +119,17 @@ function [weight_of_samples,samples_to_propagate,numDims_w,particles_old,r] ...
     % along with each pixelsTemplate, is given to reset the interest point
     % back to the middle of the patch.
     
-    set(0,'CurrentFigure',hImg)
-    imagesc(Im2/255)
-    colormap(gray);
-    set(gcf,'Position',[23 125 640 480]);
-    set(gcf,'Color',[1 1 1]);
-    title(sprintf( 'Particles projected to measurement-space\n(Time %d)', iTime));
-    hold on
-    plot(particles_new(:,2), particles_new(:,1), 'rx')
-    plot(middleOfTrackedPatch(2), middleOfTrackedPatch(1), 'bo')
-    hold off
-    drawnow
+%     set(0,'CurrentFigure',hImg)
+%     imagesc(Im2/255)
+%     colormap(gray);
+%     set(gcf,'Position',[23 125 640 480]);
+%     set(gcf,'Color',[1 1 1]);
+%     title(sprintf( 'Particles projected to measurement-space\n(Time %d)', iTime));
+%     hold on
+%     plot(particles_new(:,2), particles_new(:,1), 'rx')
+%     plot(middleOfTrackedPatch(2), middleOfTrackedPatch(1), 'bo')
+%     hold off
+%     drawnow
 
     % Optional code to save out figure:
 %     pngFileName = sprintf( '%s_%.5d.png', 'myOutput(1point)', iTime );

@@ -1,4 +1,7 @@
 function RunMe
+clc
+clear 
+close all
 
 %2015.2.26
 %Mincong: load from outside to prevent duplicated loading
@@ -8,7 +11,7 @@ LoadVideoFrames
 load('ll');
 load('lr');
 load('ul');
-load('lr');
+load('ur');
 
 %2015.2.26
 %Mincong: 
@@ -16,13 +19,16 @@ load('lr');
 %The reason is when the camera has a quick movement, the predictions require
 %a few frames to recover to right positions (corners).
 %In other words, the time for propagation causes the lags
-% Idea: Use lightfield?
-LLs = HW2_Practical9c( 'll', numFrames, imgHeight, imgWidth, Imgs );
-LRs = HW2_Practical9c( 'lr', numFrames, imgHeight, imgWidth, Imgs );
-ULs = HW2_Practical9c( 'ul', numFrames, imgHeight, imgWidth, Imgs );
-URs = HW2_Practical9c( 'ur', numFrames, imgHeight, imgWidth, Imgs );
+% Idea: 4 points has correlation rather than individual prediction
 
-%same loop for 4 times above, 1 time below!
+LLs = processCondensationFilter(  numFrames, imgHeight, imgWidth, Imgs, ...
+                         llminX, llminY, llpatchOffset, llpixelsTemplate, llpos );
+LRs = processCondensationFilter(  numFrames, imgHeight, imgWidth, Imgs, ...
+                         lrminX, lrminY, lrpatchOffset, lrpixelsTemplate, lrpos );
+ULs = processCondensationFilter(  numFrames, imgHeight, imgWidth, Imgs, ...
+                         ulminX, ulminY, ulpatchOffset, ulpixelsTemplate, ulpos );
+URs = processCondensationFilter(  numFrames, imgHeight, imgWidth, Imgs, ...
+                         urminX, urminY, urpatchOffset, urpixelsTemplate, urpos );
 
 % Coordinates of the known target object (a dark square on a plane) in 3D:
 XCart = [-50 -50  50  50;...
@@ -73,7 +79,7 @@ for iFrame = 1:numFrames
     % 2) draw lines betweeen the resulting 2d image points.
     % Note: CONDUCT YOUR CODE FOR DRAWING XWireFrameCart HERE
     %draw lines between each pair of points
-    nPoint = size(XWireFrameCart,2)
+    nPoint = size(XWireFrameCart,2);
     for i = 1:nPoint
         for j = 1:nPoint
             %Plot a line between two points that have distance of 100 (is one edge of the cube)
@@ -94,31 +100,13 @@ for iFrame = 1:numFrames
 end % End of loop over all frames.
 % ================================================
 
-% TO DO: QUESTIONS TO THINK ABOUT...
-
-% Q: Do the results look realistic?
-% If not then what factors do you think might be causing this
-
-
-% TO DO: your routines for computing a homography and extracting a 
-% valid rotation and translation GO HERE. Tips:
-%
-% - you may define functions for T and H matrices respectively.
-% - you may need to turn the points into homogeneous form before any other
-% computation. 
-% - you may need to solve a linear system in Ah = 0 form. Write your own
-% routines or using the MATLAB builtin function 'svd'. 
-% - you may apply the direct linear transform (DLT) algorithm to recover the
-% best homography H.
-% - you may explain what & why you did in the report.
-
-
+%==========================================================================
 %==========================================================================
 %==========================================================================
 
 %goal of function is to project points in XCart through projective camera
 %defined by intrinsic matrix K and extrinsic matrix T.
-function xImCart = projectiveCamera(K,T,XCart);
+function xImCart = projectiveCamera(K,T,XCart)
 
 %replace this
 xImCart = [];
@@ -143,7 +131,7 @@ xImHom = K*xCamHom;
 xImCart = xImHom(1:2,:)./repmat(xImHom(3,:),2,1);
 
 
-%==========================================================================
+
 %==========================================================================
 
 function T = estimatePlanePose(xImCart,XCart,K)

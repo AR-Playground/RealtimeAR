@@ -11,23 +11,23 @@ load( templateMetaFileName );
 numParticles = 100;
 
 if( templateMetaFileName == 'll' )
-r = processCondensationFilter( templateMetaFileName, numFrames, imgHeight, imgWidth, Imgs, ...
-                        numParticles, llminX, llminY, llpatchOffset, llpixelsTemplate, llpos );
+r = processCondensationFilter( numFrames, imgHeight, imgWidth, Imgs, ...
+                        llminX, llminY, llpatchOffset, llpixelsTemplate, llpos );
 end
 
 if( templateMetaFileName == 'lr' )
-r = processCondensationFilter( templateMetaFileName, numFrames, imgHeight, imgWidth, Imgs, ...
-                        numParticles, lrminX, lrminY, lrpatchOffset, lrpixelsTemplate, lrpos );
+r = processCondensationFilter( numFrames, imgHeight, imgWidth, Imgs, ...
+                        lrminX, lrminY, lrpatchOffset, lrpixelsTemplate, lrpos );
 end
 
 if( templateMetaFileName == 'ul' )
-r = processCondensationFilter( templateMetaFileName, numFrames, imgHeight, imgWidth, Imgs, ...
-                        numParticles, ulminX, ulminY, ulpatchOffset, ulpixelsTemplate, ulpos );
+r = processCondensationFilter( numFrames, imgHeight, imgWidth, Imgs, ...
+                        ulminX, ulminY, ulpatchOffset, ulpixelsTemplate, ulpos );
 end
 
 if( templateMetaFileName == 'ur' )
-r = processCondensationFilter( templateMetaFileName, numFrames, imgHeight, imgWidth, Imgs, ...
-                        numParticles, urminX, urminY, urpatchOffset, urpixelsTemplate, urpos );
+r = processCondensationFilter( numFrames, imgHeight, imgWidth, Imgs, ...
+                        urminX, urminY, urpatchOffset, urpixelsTemplate, urpos );
 end
 
 end
