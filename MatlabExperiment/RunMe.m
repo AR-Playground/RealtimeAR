@@ -1,4 +1,12 @@
 function RunMe
+%2015.2.27
+%Mincong:
+%Currently there are two error predictions (lags) in LLs and ULs.
+%The reason is when the camera has a quick movement, the predictions require
+%a few frames to recover to right positions (corners).
+%In other words, the time for propagation causes the lags
+% Idea: 4 points has correlation rather than individual prediction
+
 clc
 clear
 close all
@@ -12,14 +20,6 @@ load('ll');
 load('lr');
 load('ul');
 load('ur');
-
-%2015.2.26
-%Mincong:
-%Currently there are two error predictions (lags) in LLs and ULs.
-%The reason is when the camera has a quick movement, the predictions require
-%a few frames to recover to right positions (corners).
-%In other words, the time for propagation causes the lags
-% Idea: 4 points has correlation rather than individual prediction
 
 numParticles=100;
 numDims_w = 2;
@@ -44,7 +44,6 @@ urweight_of_samples = llweight_of_samples;
 ursamples_to_propagate = llsamples_to_propagate;
 urparticles_old = repmat([urminY urminX], numParticles, 1 ) + 5*rand( numParticles, numDims_w );
 URs = LLs;
-
 
 % Coordinates of the known target object (a dark square on a plane) in 3D:
 XCart = [-50 -50  50  50;...
