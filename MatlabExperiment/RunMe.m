@@ -111,7 +111,7 @@ for iFrame = 1:numFrames
     T = estimatePlanePose(xImCart, XCart, K);
     
    
-    %TO DO Draw a wire frame cube, by projecting the vertices of a 3D cube
+    %Draw a wire frame cube, by projecting the vertices of a 3D cube
     %through the projective camera, and drawing lines betweeen the
     %resulting 2d image points
     XImWireFrameCart = projectiveCamera(K,T,XWireFrameCart);
@@ -135,15 +135,17 @@ for iFrame = 1:numFrames
     hold off;
     drawnow;
     
-    %     Optional code to save out figure
-    %     pngFileName = sprintf( '%s_%.5d.png', 'myOutput', iFrame );
-    %     print( gcf, '-dpng', '-r80', pngFileName ); % Gives 640x480 (small) figure
+    %======================================================
+    %    Save out figure
+    %======================================================
+    %pngFileName = sprintf( '%s_%.5d.png', 'myOutput', iFrame );
+    %print( gcf, '-dpng', '-r80', pngFileName ); % Gives 640x480 (small) figure
     
     
 end % End of loop over all frames.
 
 %==========================================================================
-%==========================================================================
+%    Sub Functions
 %==========================================================================
 
 %goal of function is to project points in XCart through projective camera
