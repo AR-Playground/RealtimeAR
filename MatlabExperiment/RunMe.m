@@ -47,8 +47,8 @@ URs = LLs;
 
 % Coordinates of the known target object (a dark square on a plane) in 3D:
 XCart = [-50 -50  50  50;...
-    50 -50 -50  50;...
-    0   0   0   0];
+          50 -50 -50  50;...
+           0   0   0   0];
 
 % These are some approximate intrinsics for this footage.
 K = [640  0    320;...
@@ -56,14 +56,12 @@ K = [640  0    320;...
     0    0    1];
 
 % Define 3D points of wireframe object.
-XWireFrameCart = [-50 -50  50  50 -50 -50  50  50;...
-    50 -50 -50  50  50 -50 -50  50;...
-    0   0   0   0 -100 -100 -100 -100];
-
+XWireFrameCart = getModel();
 
 % ================================================
 hImg = figure;
-for iFrame = 1:numFrames
+%for iFrame = 1:numFrames
+for iFrame = 1:28   %Debug    
     [llweight_of_samples,llsamples_to_propagate,llparticles_old,LLs] ...
         = CondensationFilter ...
         ( imgHeight, imgWidth, Imgs,...
@@ -117,10 +115,7 @@ for iFrame = 1:numFrames
     XImWireFrameCart = projectiveCamera(K,T,XWireFrameCart);
     hold on;
     
-    % TO DO: Draw a wire frame cube using data XWireFrameCart. You need to
-    % 1) project the vertices of a 3D cube through the projective camera;
-    % 2) draw lines betweeen the resulting 2d image points.
-    % Note: CONDUCT YOUR CODE FOR DRAWING XWireFrameCart HERE
+    % TO DO: Draw a wire frame cube using data XWireFrameCart. 
     %draw lines between each pair of points
     nPoint = size(XWireFrameCart,2);
     for i = 1:nPoint
