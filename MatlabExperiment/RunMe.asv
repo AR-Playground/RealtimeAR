@@ -57,7 +57,7 @@ K = [640  0    320;...
 
 % Define 3D points of wireframe object.
 %XWireFrameCart = preprocessModel(eggmodel());
-%XWireFrameCart = preprocessModel(applemodel());
+XWireFrameCart = preprocessModel(applemodel());
 XWireFrameCart = cubemodel();
 
 
@@ -65,8 +65,8 @@ XWireFrameCart = cubemodel();
 % ================================================
 nPoint = size(XWireFrameCart,2);    
 hImg = figure;
-for iFrame = 1:numFrames
-%for iFrame = 1:28   %Debug    
+%for iFrame = 1:numFrames
+for iFrame = 1:28   %Debug    
     [llweight_of_samples,llsamples_to_propagate,llparticles_old,LLs] ...
         = CondensationFilter ...
         ( imgHeight, imgWidth, Imgs,...
