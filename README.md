@@ -2,6 +2,9 @@
 
 <img src="https://github.com/mincongzhang/MachineVision/raw/master/augmented_reality.jpg" alt="augmented_reality" title="augmented_reality" width="500"/>
 
+### To make a AR game
+http://www.hexahedria.com/2014/11/18/a-tale-of-two-hackathons-part-2-augmented-reality-snake/
+
 ###2015.3.1 Semi-Realtime AR Finished
 Problems:  
 (1) Prediction lags for the edges occur when camera shakes.   
