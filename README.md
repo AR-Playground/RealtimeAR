@@ -1,6 +1,6 @@
 # RealtimeAR
 
-### 2015.8.9 Try to make a AR game
+###Try to make a AR game
 Local:  http://localhost/src/
 
 ##### reference:    
@@ -10,7 +10,7 @@ Run localhost:　
 http://segmentfault.com/q/1010000003018927　　
 
 
-###2015.3.1 Semi-Realtime AR in Matlab
+###Semi-Realtime AR algorithm in Matlab
 
 <img src="https://github.com/mincongzhang/MachineVision/raw/master/augmented_reality.jpg" alt="augmented_reality" title="augmented_reality" width="500"/>
 
