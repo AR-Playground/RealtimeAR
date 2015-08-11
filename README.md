@@ -4,7 +4,7 @@
 Local:  http://localhost/src/
 
 reference:    
-AR snake: http://www.hexahedria.com/2014/11/18/a-tale-of-two-hackathons-part-2-augmented-reality-snake/　　
+AR snake: http://www.hexahedria.com/2014/11/18/a-tale-of-two-hackathons-part-2-augmented-reality-snake/　　  
 Run localhost:　http://segmentfault.com/q/1010000003018927　　
 
 
@@ -15,7 +15,8 @@ Run localhost:　http://segmentfault.com/q/1010000003018927　　
 
 Problems:  
 (1) Prediction lags for the edges occur when camera shakes.   
-(Improve the Condensation filter algorithm)  
+(Improve the Condensation filter algorithm)
+(Someone told me SIFT will be much better)
 
 (2) 4 edges' predictions are now independent to each other.   
 (May use their correlations to improve.)  
