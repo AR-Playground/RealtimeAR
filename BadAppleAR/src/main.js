@@ -1,4 +1,4 @@
-var requestFullscreen = function (ele) {
+function requestFullscreen(ele) {
     if (ele.requestFullscreen) {
         ele.requestFullscreen();
     } else if (ele.webkitRequestFullscreen) {
