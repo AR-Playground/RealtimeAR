@@ -74,9 +74,7 @@ function windowOnload() {
 
 			var idata = web_cam.getImageData();
 			if(initialMatrix) {
-				var isUpdated = trans_finder.updateMatrix(idata, initialMatrix);
-
-				if(isUpdated == false) {
+				if(trans_finder.updateMatrix(idata, initialMatrix) == false) {
 					initialMatrix = null;
 				}
 			} else {
@@ -105,4 +103,6 @@ function windowOnload() {
 
 //Accessing a function without () will return the function definition
 //Like inline in C++?
+//windowOnload() should have return var
+//other wise...nothing...
 window.onload = windowOnload;
