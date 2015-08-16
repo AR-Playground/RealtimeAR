@@ -8,6 +8,7 @@ Local:  http://localhost/src/
 ##### reference:    
 AR snake:     
 http://www.hexahedria.com/2014/11/18/a-tale-of-two-hackathons-part-2-augmented-reality-snake/　　  
+https://github.com/khanh111/ARS    
 Run localhost:　  
 http://segmentfault.com/q/1010000003018927　　
 
