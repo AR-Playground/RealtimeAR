@@ -1,4 +1,4 @@
-function requestFullscreen(ele) {
+function requestFullScreen(ele) {
     if (ele.requestFullscreen) {
         ele.requestFullscreen();
     } else if (ele.webkitRequestFullscreen) {
@@ -13,10 +13,12 @@ function requestFullscreen(ele) {
     }
 };
 
-var w = Webcam();
-window.onload = function onload() {
 
-console.log(screen.width,screen.height);
+
+var web_cam = Webcam();
+window.onload = function windowOnload() {
+
+	console.log(screen.width,screen.height);
 
 	var canvas = document.getElementById("displayCanvas");
 	//canvas.width = screen.width;
@@ -29,7 +31,7 @@ console.log(screen.width,screen.height);
 	var nextTurn = null;
 
 	canvas.addEventListener('mousedown',function click1(){
-		requestFullscreen(document.getElementById("fullscreenContainer"));
+		requestFullScreen(document.getElementById("fullscreenContainer"));
 		canvas.removeEventListener('mousedown',click1);
 		canvas.addEventListener('mousedown',function click2(event){
 
@@ -60,7 +62,7 @@ console.log(screen.width,screen.height);
 		}
 	});
 
-	w.setup(screen.width,screen.height).then(function() {
+	web_cam.setup(screen.width,screen.height).then(function() {
 		console.log("webcam connected");
 		gameRenderer.setup();
 		compatibility.requestAnimationFrame(step);
@@ -69,31 +71,29 @@ console.log(screen.width,screen.height);
 	var orient = DeviceOrientationDetector();
 	orient.setup();
 
-	var tf = TransformationFinder();
+	var trans_finder = TransformationFinder();
 	var initialMatrix = null;
-
 
 	var gameRenderer = GameRenderer();
 
 	var step = function step() {
-		if(w.isReady()) {
-			var nowStep = performance.now();
-			var idata = w.getImageData();
+		if(web_cam.isReady()) {
 
+			var idata = web_cam.getImageData();
 			if(initialMatrix) {
-				var isUpdated = tf.updateMatrix(idata, initialMatrix);
+				var isUpdated = trans_finder.updateMatrix(idata, initialMatrix);
 
 				if(isUpdated == false) {
 					initialMatrix = null;
 				}
-			}
-			else {
-				initialMatrix = tf.discoverMarker(idata);
+			} else {
+				initialMatrix = trans_finder.discoverMarker(idata);
 			}
 
 			// draw
 			//ctx.putImageData(idata,0,0);
 			//
+			var nowStep = performance.now();
 			if(nowStep>lastGameStep+MILLISECONDS_PER_FRAME){
 				if(nextTurn=='left'){
 					snake.turnRight();
@@ -109,7 +109,7 @@ console.log(screen.width,screen.height);
 			gameRenderer.draw(initialMatrix, orient.detect());
 			/*if(initialMatrix != null){
 				ctx.fillStyle="green";
-				cornerpts = tf.transformIdealCorners(initialMatrix);
+				cornerpts = trans_finder.transformIdealCorners(initialMatrix);
 				for (var i = 0; i < cornerpts.length; i+=2) {
 					var x = cornerpts[i],
 						y = cornerpts[i+1];
