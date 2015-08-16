@@ -13,7 +13,6 @@ out(:,2) = normalizeTo50(out(:,2));
 zmax = max(out(:,3));
 zmin = min(out(:,3));
 length = zmax-zmin; 
-
 out(:,3) = (out(:,3) - zmax) / length * 50;
 
 out = out';

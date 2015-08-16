@@ -1,13 +1,13 @@
-function [weight_of_samples,samples_to_propagate,particles_old,r] ... 
+function [weight_of_samples,samples_to_propagate,particles_old,result] ... 
          = CondensationFilter ...
          (  imgHeight, imgWidth, Imgs,...
            numParticles, minX, minY, patchOffset, pixelsTemplate, pos,...
            weight_of_samples,samples_to_propagate,numDims_w,particles_old,iFrame,...
-           r)
+           result)
 
   
     % TO DO: compute the cumulative sume of the weights. You could refer to
-    % the MATLAB buitin function 'cumsum'.
+    % the MATLAB builtin function 'cumsum'.
     cum_hist_of_weights = cumsum(weight_of_samples);
 
 
@@ -57,9 +57,6 @@ function [weight_of_samples,samples_to_propagate,particles_old,r] ...
         particles_new(particleNum,:) = round(  particles_new(particleNum,:)  ); % Round the particles_new to simplify Likelihood evaluation.
     end;
     
-        
-        %particles_new(particleNum,:) = round(  particles_new(particleNum,:)  ); % Not pretty, but will simplify Likelihood evaluation.
-    %end;
     % TO DO (optional): change the motion model above to have different 
     % degrees of freedom, and optionally completely different motion models.
     % See Extra Credit for more instructions.
@@ -111,7 +108,7 @@ function [weight_of_samples,samples_to_propagate,particles_old,r] ...
     weightedAve = weight_of_samples'*particles_new;
     
     middleOfTrackedPatch = weightedAve + patchOffset;
-    r(iFrame,:) = middleOfTrackedPatch; % Return the MAP of middle position 
+    result(iFrame,:) = middleOfTrackedPatch; % Return the MAP of middle position 
     % of a patch. That 'middle' is the patch's interest point in the
     % current frame. The coordinate we've been using everywhere is the
     % upper-left corner of each patch. We're actually most interested

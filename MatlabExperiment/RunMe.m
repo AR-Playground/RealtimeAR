@@ -60,8 +60,6 @@ K = [640  0    320;...
 %XWireFrameCart = preprocessModel(applemodel());
 XWireFrameCart = cubemodel();
 
-
-
 % ================================================
 nPoint = size(XWireFrameCart,2);    
 hImg = figure;
@@ -122,20 +120,19 @@ for iFrame = 1:numFrames
     
     % TO DO: Draw a wire frame cube using data XWireFrameCart. 
     %draw lines between each pair of points
-%     nPoint = size(XWireFrameCart,2);
-%     for i = 1:nPoint
-%         for j = 1:nPoint
-%             %Plot a line between two points that have distance of 100 (is one edge of the cube)
-%             if  ( sum(abs(XWireFrameCart(:,i) - XWireFrameCart(:,j)))==100 )
-%                 plot([XImWireFrameCart(1,i) XImWireFrameCart(1,j)],[XImWireFrameCart(2,i) XImWireFrameCart(2,j)],'g-');
-%                 hold on;
-%             end
-%         end
-%     end
-    for i = 2:nPoint
-         plot([XImWireFrameCart(1,i) XImWireFrameCart(1,i-1)],[XImWireFrameCart(2,i) XImWireFrameCart(2,i-1)],'g-');
-         hold on;
+    for i = 1:nPoint
+        for j = 1:nPoint
+            %Plot a line between two points that have distance of 100 (is one edge of the cube)
+            if  ( sum(abs(XWireFrameCart(:,i) - XWireFrameCart(:,j)))==100 )
+                plot([XImWireFrameCart(1,i) XImWireFrameCart(1,j)],[XImWireFrameCart(2,i) XImWireFrameCart(2,j)],'g-');
+                hold on;
+            end
+        end
     end
+%     for i = 2:nPoint
+%          plot([XImWireFrameCart(1,i) XImWireFrameCart(1,i-1)],[XImWireFrameCart(2,i) XImWireFrameCart(2,i-1)],'g-');
+%          hold on;
+%     end
     hold off;
     drawnow;
     
