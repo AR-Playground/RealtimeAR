@@ -13,19 +13,12 @@ function requestFullScreen(ele) {
     }
 };
 
-
-
 var web_cam = Webcam();
-window.onload = function windowOnload() {
+function windowOnload() {
 
 	console.log(screen.width,screen.height);
 
 	var canvas = document.getElementById("displayCanvas");
-	//canvas.width = screen.width;
-	//canvas.height = screen.height;
-	//ctx = canvas.getContext('2d');
-
-
 	var MILLISECONDS_PER_FRAME = 100;
 	var lastGameStep = performance.now();
 	var nextTurn = null;
@@ -90,9 +83,6 @@ window.onload = function windowOnload() {
 				initialMatrix = trans_finder.discoverMarker(idata);
 			}
 
-			// draw
-			//ctx.putImageData(idata,0,0);
-			//
 			var nowStep = performance.now();
 			if(nowStep>lastGameStep+MILLISECONDS_PER_FRAME){
 				if(nextTurn=='left'){
@@ -107,18 +97,12 @@ window.onload = function windowOnload() {
 			}
 
 			gameRenderer.draw(initialMatrix, orient.detect());
-			/*if(initialMatrix != null){
-				ctx.fillStyle="green";
-				cornerpts = trans_finder.transformIdealCorners(initialMatrix);
-				for (var i = 0; i < cornerpts.length; i+=2) {
-					var x = cornerpts[i],
-						y = cornerpts[i+1];
-					ctx.fillRect(x-1,y-1,2,2);
-				};
-			}*/
-
 		}
 
 		compatibility.requestAnimationFrame(step);
 	};
 }
+
+//Accessing a function without () will return the function definition
+//Like inline in C++?
+window.onload = windowOnload;
