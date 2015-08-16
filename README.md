@@ -1,8 +1,6 @@
 # RealtimeAR
 
-###Try AR bad apple :P
-
-###Try to make a AR game
+###Try AR bad apple
 Local:  http://localhost/src/
 
 ##### reference:    
