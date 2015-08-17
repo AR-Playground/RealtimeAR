@@ -13,15 +13,11 @@ function requestFullScreen(ele) {
     }
 };
 
-var web_cam = Webcam();
 function windowOnload() {
 
 	console.log(screen.width,screen.height);
 
 	var canvas = document.getElementById("displayCanvas");
-	var MILLISECONDS_PER_FRAME = 100;
-	var lastGameStep = performance.now();
-	var nextTurn = null;
 
 	canvas.addEventListener('mousedown',function click1(){
 		requestFullScreen(document.getElementById("fullscreenContainer"));
@@ -55,6 +51,7 @@ function windowOnload() {
 		}
 	});
 
+	var web_cam = Webcam();
 	web_cam.setup(screen.width,screen.height).then(function() {
 		console.log("webcam connected");
 		gameRenderer.setup();
@@ -69,6 +66,10 @@ function windowOnload() {
 
 	var gameRenderer = GameRenderer();
 
+	var MILLISECONDS_PER_FRAME = 100;
+	var lastGameStep = performance.now();
+	var step_count = 0;
+	var nextTurn = null;
 	var step = function step() {
 		if(web_cam.isReady()) {
 
@@ -83,6 +84,8 @@ function windowOnload() {
 
 			var nowStep = performance.now();
 			if(nowStep>lastGameStep+MILLISECONDS_PER_FRAME){
+				step_count++;
+				console.log("frame step: ["+step_count+"]");
 				if(nextTurn=='left'){
 					snake.turnRight();
 				}else if(nextTurn=='right'){
